@@ -7,7 +7,8 @@
       <span>m = </span>
       <b-col class="col-lg-6">
         <b-form-input
-          v-model="m"
+          @input="update"
+          v-model="input.m"
           type="number"
           step="0.1"
           size="sm"
@@ -18,7 +19,8 @@
       <span>b = </span>
       <b-col class="col-lg-6">
         <b-form-input
-          v-model="b"
+          @input="update"
+          v-model="input.b"
           type="number"
           step="0.1"
           size="sm"
@@ -76,24 +78,34 @@
 <script>
 export default {
   name: "SideBarInput",
+  props:{
+    m: Number,
+    b: Number,
+    points: Array,
+  },
   data() {
     return {
-      m: 1,
-      b: 0,
-      points: [
-        { x: 1, y: 1 },
-        { x: 2, y: 3 },
-        { x: 3, y: 3 },
-        { x: 4, y: 5 },
-        { x: 5, y: 4 },
-        { x: 6, y: 7 },
-        { x: 7, y: 6 },
-        { x: 8, y: 8 },
-        { x: 9, y: 10 },
-        { x: 10, y: 9 },
-      ],
       newPoint: { x: 0, y: 0 },
+      input: {
+        m: this.m || 1,
+        b: this.b || 0,
+      },
     }
+  },
+  methods: {
+    addPoint() {
+      this.points.push(this.newPoint);
+      this.newPoint = { x: 0, y: 0 };
+      this.$emit("pointsChanged", this.points);
+    },
+    removePoint(index) {
+      this.points.splice(index, 1);
+    },
+    update() {
+      this.input.m = parseFloat(this.input.m) || 0;
+      this.input.b = parseFloat(this.input.b) || 0;
+      this.$emit("input", this.input);
+    },
   },
 };
 </script>
