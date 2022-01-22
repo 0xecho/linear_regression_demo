@@ -1,15 +1,10 @@
 <template>
   <div id="app">
     Linear Regression Demo :-)
-    <b-container class="bv-example-row bv-example-row-flex-cols">
+    <b-container>
       <b-row>
-        <b-col>
-          <b-row>
-            Line Data
-          </b-row>
-          <b-row>
-            Points Data
-          </b-row>
+        <b-col class="col-md-2">
+          <SideBarInput />
         </b-col>
         <b-col>
           Points + Line Graph
@@ -23,12 +18,13 @@
 </template>
 
 <script>
+import SideBarInput from './components/SideBarInput.vue'
 
 export default {
   name: 'App',
   components: {
-    
-  }
+    SideBarInput
+  },
 }
 </script>
 
@@ -40,5 +36,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 </style>
