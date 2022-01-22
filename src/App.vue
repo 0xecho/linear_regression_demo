@@ -12,6 +12,7 @@
         </b-col>
         <b-col>
           Cost Function Contour Graph
+          <ContourGraph :points="points" :width="width" :height="height" :m="lineData.m" :b="lineData.b"/>
         </b-col>
       </b-row>
     </b-container>
@@ -20,12 +21,14 @@
 
 <script>
 import SideBarInput from './components/SideBarInput.vue'
+import ContourGraph from './components/ContourGraph.vue'
 import * as d3 from 'd3';
 
 export default {
   name: 'App',
   components: {
     SideBarInput,
+    ContourGraph
   },
   data(){
     return {
@@ -36,8 +39,8 @@ export default {
         m: 1,
         b: 0
       },
-      width: 500,
-      height: 500,
+      width: 350,
+      height: 350,
     }
   },methods: {
     drawGraph() {
